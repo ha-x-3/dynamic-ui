@@ -1,6 +1,7 @@
 const galleryContainer = document.querySelector('.gallery-container');
 const galleryControlsContainer = document.querySelector('.gallery-controls');
 const galleryItems = [...document.querySelectorAll('.gallery-item')];
+const galleryNavDots = [...document.querySelectorAll('.gallery-nav-dot')];
 
 const createCarousel = () => {
 	let carouselArray = [...galleryItems];
@@ -17,13 +18,37 @@ const createCarousel = () => {
 			);
 			el.classList.add(`gallery-item-${index + 1}`);
 		});
+		updateDots();
+	};
+
+	const updateDots = () => {
+		const activeIndex = parseInt(carouselArray[2].dataset.index) - 1;
+		galleryNavDots.forEach((dot, index) => {
+			dot.classList.toggle(
+				'gallery-nav-dot-selected',
+				index === activeIndex
+			);
+		});
 	};
 
 	const setCurrentState = (direction) => {
 		if (direction === 'previous') {
 			carouselArray.unshift(carouselArray.pop());
-		} else {
+		} else if (direction === 'next') {
 			carouselArray.push(carouselArray.shift());
+		}
+		updateGallery();
+	};
+
+	const setCurrentSlide = (index) => {
+		carouselArray = [...galleryItems];
+		const offset = index - 3;
+		for (let i = 0; i < Math.abs(offset); i++) {
+			if (offset > 0) {
+				carouselArray.push(carouselArray.shift());
+			} else {
+				carouselArray.unshift(carouselArray.pop());
+			}
 		}
 		updateGallery();
 	};
@@ -48,8 +73,19 @@ const createCarousel = () => {
 		});
 	};
 
+	const useDots = () => {
+		galleryNavDots.forEach((dot) => {
+			dot.addEventListener('click', (e) => {
+				const index = parseInt(e.target.dataset.index);
+				setCurrentSlide(index);
+			});
+		});
+	};
+
 	addControls();
 	useControls();
+	useDots();
+	updateGallery();
 };
 
 createCarousel();

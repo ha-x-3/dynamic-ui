@@ -14,7 +14,7 @@ body {
 
 .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(17, 38, 40);
     width: 100%;
 }
 
@@ -165,13 +165,11 @@ body {
 }
 
 .gallery-nav {
-    bottom: -15px;
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: 0;
-    position: absolute;
-    width: 100%;
+    padding: 20px 0;
+    margin: 10px 0;
 }
 
 .gallery-nav li {
@@ -180,8 +178,9 @@ body {
     height: 10px;
     margin: 0 16px;
     width: 10px;
+    cursor: pointer;
 }
 
-.gallery-nav li.gallery-item-selected {
+.gallery-nav li.gallery-nav-dot-selected {
     background: #555;
 }
