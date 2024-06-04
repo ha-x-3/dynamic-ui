@@ -7,15 +7,33 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
-
 <body>
     <div class="navbar">
         <div class="dropdown">
-            <button class="dropbtn">Dropdown
+            <button class="dropbtn" onclick="myFunction()">Dropdown
                 <i class="fa fa-caret-down"></i>
             </button>
-            <div class="dropdown-content">
-
+            <div class="dropdown-content" id="myDropdown">
+                <a data-index="1">
+                  <i class='bx bx-dice-1'></i>
+                  Image 1  
+                </a>
+                <a data-index="2">
+                  <i class='bx bx-dice-2'></i>
+                  Image 2  
+                </a>
+                <a data-index="3">
+                  <i class='bx bx-dice-3'></i>
+                  Image 3  
+                </a>
+                <a data-index="4">
+                  <i class='bx bx-dice-4'></i>
+                  Image 4  
+                </a>
+                <a data-index="5">
+                  <i class='bx bx-dice-5'></i>
+                  Image 5  
+                </a>
             </div>
         </div>
     </div>
