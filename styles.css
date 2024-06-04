@@ -154,7 +154,7 @@ body {
     padding: 10px;
     position: absolute;
     right: -30px;
-    top: 45;
+    top: 45%;
     transform: rotate(-45deg) translateY(-50%);
     transition: right 0.15s ease-in-out;
     width: 5px;
