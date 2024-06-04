@@ -18,6 +18,8 @@ const galleryItems = [...document.querySelectorAll('.gallery-item')];
 const galleryNavDots = [...document.querySelectorAll('.gallery-nav-dot')];
 const dropdownLinks = document.querySelectorAll('.dropdown-content a');
 
+let autoSlideTimeout;
+
 const createCarousel = () => {
 	let carouselArray = [...galleryItems];
 	const controls = ['previous', 'next'];
@@ -53,6 +55,7 @@ const createCarousel = () => {
 			carouselArray.push(carouselArray.shift());
 		}
 		updateGallery();
+		restartAutoSlide();
 	};
 
 	const setCurrentSlide = (index) => {
@@ -66,6 +69,7 @@ const createCarousel = () => {
 			}
 		}
 		updateGallery();
+		restartAutoSlide();
 	};
 
 	const addControls = () => {
@@ -97,7 +101,7 @@ const createCarousel = () => {
 		});
 	};
 
-    const useDropdownLinks = () => {
+	const useDropdownLinks = () => {
 		dropdownLinks.forEach((link) => {
 			link.addEventListener('click', (e) => {
 				const index = parseInt(e.target.dataset.index);
@@ -106,10 +110,22 @@ const createCarousel = () => {
 		});
 	};
 
+	const startAutoSlide = () => {
+		autoSlideTimeout = setInterval(() => {
+			setCurrentState('next');
+		}, 5000);
+	};
+
+	const restartAutoSlide = () => {
+		clearInterval(autoSlideTimeout);
+		startAutoSlide();
+	};
+
 	addControls();
 	useControls();
 	useDots();
-    useDropdownLinks();
+	useDropdownLinks();
+	startAutoSlide();
 	updateGallery();
 };
 
